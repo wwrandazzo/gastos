@@ -14,16 +14,13 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path,include
 from core import views
-from gasto.views import GastoCreateView, GastoListView, BuscaGastoListView
+from gasto.urls import gasto_urlpatterns
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.HomeGastoView.as_view(), name='home'),
-    path('create',GastoCreateView.as_view(),name='create'),
-    path('list',GastoListView.as_view(),name='list'),
-    path('buscalist/<slug:mes>/<slug:ano>/',BuscaGastoListView.as_view(),name='buscalist'),
-
+    path('gasto/',include(gasto_urlpatterns))
 ]
