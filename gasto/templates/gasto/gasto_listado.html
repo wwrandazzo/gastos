@@ -5,29 +5,63 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reporte</title>
+    <style>
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+            padding:0;
+            margin:0;
+            color: black;
+        }
+        /* Tabla */
+        table{
+            width: 100%;
+            border-collapse: collapse;
+            border: 1px solid black;
+        }
+        thead th{
+            border: 2px;
+        }
+
+        th, td{
+            padding: 3px;
+        }
+        p{
+           padding: 5px;
+           text-align: left;
+           font-size: 12px;
+        }
+        h1{
+           padding: 5px;
+           text-align: center;
+           letter-spacing: 1px;
+        }
+    </style>
 </head>
 <body>
-    <table border="1px">
+    <h1>{{title}}</h1>
+    <p>Mes: {{mes}} -  Año: {{ano}}</p>
+    <table>
         <thead>
             <tr>
-                <th>Nro</th>
+                <th style="text-align: left;">Nro</th>
                 <th>Fecha</th>
                 <th>Descripcion</th>
                 <th>Categoria</th>
-                <th>Importe</th>
+                <th style="text-align: right;">Importe</th>
             </tr>
         </thead>
         <tbody>
             {% for gasto in gastos %}
                 <tr>
-                    <td>{{ gasto.id }}</td>
+                    <td style="text-align: left;">{{ gasto.id }}</td>
                     <td>{{ gasto.fecha }}</td>
                     <td>{{ gasto.descripcion }}</td>
                     <td>{{ gasto.categoria }}</td>
-                    <td>{{ gasto.importe }}</td>
+                    <td style="text-align: right;">{{ gasto.importe }}</td>
                 </tr>
             {% endfor %}
         </tbody>
     </table>
+    <p style="text-align: right;">Total: {{total}}</p>
 </body>
 </html>

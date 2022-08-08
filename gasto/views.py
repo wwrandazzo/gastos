@@ -97,6 +97,10 @@ class ExportarGastoView(View):
         'Julio':'07','Agosto':'08','Septiembre':'09','Octubre':'10','Noviembre':'11','Diciembre':'12'}
         context = {
             'gastos': Gasto.objects.filter(fecha__month=nromes[meslistado], fecha__year=anolistado),
+            'total': Gasto.objects.filter(fecha__month=nromes[self.kwargs['mes']], fecha__year=self.kwargs['ano']).aggregate(total=Sum('importe'))['total'],
+            'mes': meslistado,
+            'ano': anolistado,
+            'title': 'Reporte de Gastos', 
         }
         html = template.render(context)
         response = HttpResponse(content_type='application/pdf')
