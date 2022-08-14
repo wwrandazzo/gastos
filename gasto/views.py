@@ -7,7 +7,7 @@ from django.views.generic.list import ListView
 from django.db.models import Sum, Count
 from .models import Gasto
 from .forms import GastoForm
-#imports para pdf export
+#imports👈 para pdf📄 export👉
 import os
 from django.conf import settings
 from django.http import HttpResponse
@@ -15,13 +15,13 @@ from django.template.loader import get_template
 from xhtml2pdf import pisa
 from django.contrib.staticfiles import finders
 
-# Create your views here.
+# Create💡 your views🕶 here.🚩
 class GastoCreateView(CreateView):
     model = Gasto
     form_class = GastoForm
     success_url = reverse_lazy('gasto:create')
     def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
+        context = super().get_context_data(**kwargs)#Sobreescribimos el context para sumar mas data🤓
         context['categorias']= Gasto.objects.values('categoria').annotate(con_cat=Count('categoria')).filter(con_cat__gte=1).order_by('-con_cat')[0:3]
         context['categoriasdos']= Gasto.objects.values('categoria').annotate(con_catdos=Count('categoria')).filter(con_catdos__gte=1).order_by('-con_catdos')[3:]
         context['categoriastres']= Gasto.objects.values('categoria').annotate(con_cattres=Count('categoria')).filter(con_cattres__gte=1).order_by('-con_cattres')[7:]
