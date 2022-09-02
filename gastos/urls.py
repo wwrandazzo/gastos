@@ -22,5 +22,7 @@ from gasto.urls import gasto_urlpatterns
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.HomeGastoView.as_view(), name='home'),
-    path('gasto/',include(gasto_urlpatterns))
+    path('gasto/',include(gasto_urlpatterns)),
+    path('accounts/',include('django.contrib.auth.urls')),
+
 ]

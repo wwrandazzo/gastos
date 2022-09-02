@@ -1,0 +1,32 @@
+{% extends 'core/base.html' %}
+
+  {% block content %}
+  {% if request.user.is_authenticated %}
+    <script>window.location.href ='/';</script>
+  {% endif %}
+  <div class="container col-xl-10 col-xxl-8 px-4 py-5">
+    <div class="row align-items-center g-lg-5 py-5">
+        <div class="col-md-10 mx-auto col-lg-5">
+            <form action="" method="post">{% csrf_token %}
+                <h1 class="h3 mb-3 fw-normal text-muted">Iniciar Sesion </h1>
+                {% if form.non_field_errors %}
+                    <p style="color:red">Usuario o contraseña incorrectos, proba de nuevo.</p>
+                {% endif %}
+                <input type="text" class="form-control" id="id_username" name="username" placeholder="Username" required>
+                <label for="id_username">User Name</label>
+                
+                <input type="password" class="form-control" id="id_password" name="password" placeholder="Password" required>
+                <label for="id_password">Password</label>
+                
+                <br>
+                <button class="w-100 btn btn-lg btn-secondary" type="submit">Iniciar Sesion</button>
+                <p class="mt-5 mb-3 text-muted">&copy; 2017–2022</p>
+            </form>
+        </div>
+    </div>
+  </div>
+
+  {% endblock %}  
+
+    
+
